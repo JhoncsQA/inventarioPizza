@@ -92,33 +92,18 @@ document.getElementById('btn-agregar-insumo').addEventListener('click', () => {
 // Función para cargar la lista de proveedores en el select
 async function cargarProveedores() {
     try {
-        const response = await fetch('/api/proveedores');
-        
-        // Verificar si la respuesta es exitosa
-        if (!response.ok) {
-            throw new Error(`Error al cargar proveedores: ${response.status} - ${response.statusText}`);
-        }
+        const response = await fetch('/api/proveedores');  // Cambia esto por la URL de tu API o fuente de datos
+        const proveedores = await response.json(); // Suponiendo que la respuesta es un JSON con una lista de proveedores
 
-        const proveedores = await response.json();
-
-        // Verificar que la respuesta sea una lista
-        if (!Array.isArray(proveedores)) {
-            throw new Error('La respuesta no es una lista válida de proveedores');
-        }
-
-        const proveedorSelect = document.getElementById('proveedor');
-        proveedorSelect.innerHTML = ''; // Limpiar opciones anteriores
-
-        // Agregar las opciones de proveedores al select
+        const selectProveedor = document.getElementById('proveedor');
         proveedores.forEach(proveedor => {
             const option = document.createElement('option');
-            option.value = proveedor.id;  // Usar el ID del proveedor
-            option.textContent = proveedor.nombre;  // Mostrar el nombre del proveedor
-            proveedorSelect.appendChild(option);
+            option.value = proveedor.id; // Asume que el proveedor tiene un ID
+            option.textContent = proveedor.nombre; // Asume que el proveedor tiene un nombre
+            selectProveedor.appendChild(option);
         });
     } catch (error) {
-        console.error('Error al cargar proveedores:', error);
-        alert('Hubo un error al cargar la lista de proveedores. Verifica la consola para más detalles.');
+        console.error('Error al cargar los proveedores:', error);
     }
 }
 
@@ -167,5 +152,7 @@ document.getElementById('form-insumo').addEventListener('submit', async (e) => {
         alert('Error al agregar el insumo');
     }
 });
+
+
 
 
