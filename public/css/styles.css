@@ -1,0 +1,222 @@
+/* /public/css/styles.css */
+
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lora', serif, 'Open Sans', sans-serif;  /* Combinación de tipografías elegantes */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f3f4f6;  /* Fondo suave y luminoso */
+    color: #333;
+    padding: 20px;
+    overflow: hidden;  /* Evitar desplazamiento indeseado */
+}
+
+/* Container for the login form */
+.login-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.12);  /* Sombra más suave y difusa */
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    border: 2px solid #e0e0e0; /* Borde fino y elegante */
+    background-image: url('https://www.example.com/your-pizza-image.jpg'); /* Fondo opcional con imagen */
+    background-size: cover;
+    background-position: center;
+    background-blur: 10px; /* Desenfoque sutil */
+}
+
+/* Title */
+h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #2C3E50;  /* Color oscuro elegante */
+    margin-bottom: 30px;
+    font-family: 'Lora', serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Form styles */
+form div {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 1em;
+    color: #333;
+    background-color: #f9f9f9;
+    font-family: 'Open Sans', sans-serif;  /* Tipografía más clara para los formularios */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #4CAF50;  /* Verde suave */
+    background-color: #f4f9f4;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #4CAF50;  /* Verde suave */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #388E3C;  /* Verde más oscuro */
+    transform: translateY(-2px);  /* Efecto sutil de elevación */
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Error message styles */
+#error-message {
+    color: white;
+    background-color: #e74c3c;  /* Rojo suave para el error */
+    border: 1px solid #c0392b;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.1em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 40px;
+    width: 440px;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+    max-width: 90%;
+    position: relative;
+    border: 2px solid #e0e0e0;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-content.show {
+    transform: scale(1);
+}
+
+.modal-content h3 {
+    font-size: 1.7em;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #4CAF50;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #555;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 16px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 2px solid #ddd;
+    font-size: 1em;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+    border-color: #4CAF50;
+    background-color: #f4f9f4;
+    outline: none;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 16px;
+    background-color: #4CAF50;  /* Verde suave */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content button:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);  /* Sutil elevación en hover */
+}
+
+.modal-content button:active {
+    transform: translateY(0);
+}
+
+/* Close button styles in modal */
+.cerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.cerrar:hover {
+    color: #4CAF50;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 25px;
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}

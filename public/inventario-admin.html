@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - Administrador</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header>
+            <h1>Inventario - Administrador</h1>
+        </header>
+
+        <section>
+            <h2>Gestión de Insumos</h2>
+            <div class="table-container">
+                <table id="tabla-insumos">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Fecha de Vencimiento</th>
+                            <th>Cantidad Total</th>
+                            <th>Unidad de Medida</th>
+                            <th>Proveedor</th>
+                            <th>Cantidad Disponible</th>
+                            <th>Stock Mínimo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>                
+                    <tbody>
+                        <!-- Aquí se cargarán los datos desde la base de datos -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <button id="btn-agregar-insumo" class="btn">Agregar Insumo</button>
+        </section>
+    </div>
+
+    <!-- Modal para agregar insumo -->
+    <div id="modal-agregar-insumo" class="modal">
+        <div class="modal-content">
+            <span id="cerrar-modal" class="cerrar">&times;</span>
+            <h2>Agregar Nuevo Insumo</h2>
+            <form id="form-insumo">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" required placeholder="Ingrese el nombre del insumo">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fecha-vencimiento">Fecha de Vencimiento:</label>
+                    <input type="date" id="fecha-vencimiento" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cantidad-total">Cantidad Total:</label>
+                    <input type="number" id="cantidad-total" required placeholder="Cantidad total">
+                </div>
+                
+                <div class="form-group">
+                    <label for="unidad-medida">Unidad de Medida:</label>
+                    <input type="text" id="unidad-medida" required placeholder="Unidad de medida">
+                </div>
+                
+                <div class="form-group">
+                    <label for="proveedor">Proveedor:</label>
+                    <select id="proveedor" required>
+                        <option value="" disabled selected>Seleccione un proveedor</option>
+                        <!-- Opciones de proveedores se cargarán dinámicamente -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="stock-minimo">Stock Mínimo:</label>
+                    <input type="number" id="stock-minimo" required placeholder="Stock mínimo">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Registrar Insumo</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="/js/admin-inventario.js"></script>
+</body>
+</html>

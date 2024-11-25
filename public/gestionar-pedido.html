@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Pedido</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Gestionar Pedido</h1>
+        
+    <form id="pedidoForm">
+        <div>
+            <label for="pizzasDisponibles">Pizzas Disponibles:</label>
+            <select id="pizzasDisponibles" name="pizzasDisponibles">
+                <option value="" disabled selected>Seleccione una pizza</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="pizzasNoDisponibles">Pizzas No Disponibles:</label>
+            <select id="pizzasNoDisponibles" name="pizzasNoDisponibles">
+                <option value="" disabled selected>Seleccione una pizza</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="fechaPedido">Fecha del Pedido:</label>
+            <input type="text" id="fechaPedido" name="fechaPedido" required>
+        </div>
+
+        <button type="submit">Guardar Pedido</button>
+    </form>
+
+    <div id="message"></div>
+
+    <script>
+        // Cargar las pizzas disponibles y no disponibles
+        async function cargarPizzas() {
+            try {
+                const response = await fetch('/api/pizzas');
+                const data = await response.json();
+
+                // Cargar las pizzas disponibles en el select
+                const pizzasDisponiblesSelect = document.getElementById('pizzasDisponibles');
+                data.pizzasDisponibles.forEach(pizza => {
+                    const option = document.createElement('option');
+                    option.value = pizza;
+                    option.textContent = pizza;
+                    pizzasDisponiblesSelect.appendChild(option);
+                });
+
+                // Cargar las pizzas no disponibles en el select
+                const pizzasNoDisponiblesSelect = document.getElementById('pizzasNoDisponibles');
+                data.pizzasNoDisponibles.forEach(pizza => {
+                    const option = document.createElement('option');
+                    option.value = pizza;
+                    option.textContent = pizza;
+                    pizzasNoDisponiblesSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error al cargar las pizzas:', error);
+            }
+        }
+
+        // Llamar a cargarPizzas cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', cargarPizzas);
+    </script>
+        <script>
+    const pedidoForm = document.getElementById('pedidoForm');
+    const message = document.getElementById('message');
+
+    pedidoForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const pizzaSeleccionada = document.getElementById('pizzasDisponibles').value;
+        const pizzaNoDisponible = document.getElementById('pizzasNoDisponibles').value;
+        const fechaPedido = document.getElementById('fechaPedido').value;
+
+        try {
+            const response = await fetch(`/api/pedidos`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pizzaSeleccionada, pizzaNoDisponible, fechaPedido })
+            });
+
+            const data = await response.json();
+            if (data.success) {
+                message.textContent = 'Pedido actualizado correctamente.';
+            } else {
+                message.textContent = 'Hubo un problema al actualizar el pedido.';
+            }
+        } catch (error) {
+            console.error('Error al actualizar el pedido:', error);
+            message.textContent = 'Error al procesar la solicitud.';
+        }
+    });
+</script>
+
+</body>
+</html>
